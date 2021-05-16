@@ -13,7 +13,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
 import Utility.ExtentReporter;
-import Utility.Screenshot;
+import Utility.ScreenShot;
 
 public class Listeners implements ITestListener{
 
@@ -49,8 +49,7 @@ public class Listeners implements ITestListener{
 					
 				}
 				try {
-					extentTest.get().addScreenCaptureFromPath(Screenshot.captureScreen(driver, testMethodName, testMethodName), result.getMethod().getMethodName());
-					
+					extentTest.get().addScreenCaptureFromPath(ScreenShot.captureScreen(driver, testMethodName, testMethodName), result.getMethod().getMethodName());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

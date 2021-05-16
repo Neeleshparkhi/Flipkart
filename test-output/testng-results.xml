@@ -1,27 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="71532" started-at="2020-11-09T13:42:09 IST" finished-at="2020-11-09T13:43:21 IST">
+  <suite started-at="2021-04-18T17:39:11 IST" name="Default suite" finished-at="2021-04-18T17:39:29 IST" duration-ms="17163">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="71532" started-at="2020-11-09T13:42:09 IST" finished-at="2020-11-09T13:43:21 IST">
+    <test started-at="2021-04-18T17:39:11 IST" name="Default test" finished-at="2021-04-18T17:39:29 IST" duration-ms="17163">
       <class name="LandingPage.LandingPageTest">
-        <test-method status="PASS" signature="Browsersetup()[pri:0, instance:LandingPage.LandingPageTest@3af9c5b7]" name="Browsersetup" is-config="true" duration-ms="58403" started-at="2020-11-09T13:42:09 IST" finished-at="2020-11-09T13:43:08 IST">
+        <test-method is-config="true" signature="Browsersetup()[pri:0, instance:LandingPage.LandingPageTest@3fc9504b]" started-at="2021-04-18T17:39:11 IST" name="Browsersetup" finished-at="2021-04-18T17:39:19 IST" duration-ms="7124" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Browsersetup -->
-        <test-method status="FAIL" signature="MobileSelection()[pri:0, instance:LandingPage.LandingPageTest@3af9c5b7]" name="MobileSelection" duration-ms="12197" started-at="2020-11-09T13:43:08 IST" finished-at="2020-11-09T13:43:21 IST">
-          <exception class="java.lang.NullPointerException">
+        <test-method signature="MobileSelection()[pri:0, instance:LandingPage.LandingPageTest@3fc9504b]" started-at="2021-04-18T17:39:19 IST" name="MobileSelection" finished-at="2021-04-18T17:39:28 IST" duration-ms="9272" status="FAIL">
+          <exception class="org.openqa.selenium.InvalidSelectorException">
+            <message>
+              <![CDATA[invalid selector: Unable to locate an element with the xpath expression //div[@class='_213eRC _2ssEMF']/div)[13] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//div[@class='_213eRC _2ssEMF']/div)[13]' is not a valid XPath expression.
+  (Session info: chrome=89.0.4389.128)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-AT1H70D', ip: '172.16.191.254', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.128, chrome: {chromedriverVersion: 89.0.4389.23 (61b08ee2c5002..., userDataDir: C:\Users\admin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:29187}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: f152d71384d88bde27734493442945c7
+*** Element info: {Using=xpath, value=//div[@class='_213eRC _2ssEMF']/div)[13]}]]>
+            </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-at Utility.WriteExcel.writeExcel(WriteExcel.java:27)
-at FunctionalLibrary.FlipkartLandingPage.MobileSelection(FlipkartLandingPage.java:128)
-at LandingPage.LandingPageTest.MobileSelection(LandingPageTest.java:38)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
+              <![CDATA[org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //div[@class='_213eRC _2ssEMF']/div)[13] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//div[@class='_213eRC _2ssEMF']/div)[13]' is not a valid XPath expression.
+  (Session info: chrome=89.0.4389.128)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-AT1H70D', ip: '172.16.191.254', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.128, chrome: {chromedriverVersion: 89.0.4389.23 (61b08ee2c5002..., userDataDir: C:\Users\admin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:29187}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: f152d71384d88bde27734493442945c7
+*** Element info: {Using=xpath, value=//div[@class='_213eRC _2ssEMF']/div)[13]}
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at FunctionalLibrary.FlipkartLandingPage.ProcesserBand(FlipkartLandingPage.java:81)
+at FunctionalLibrary.FlipkartLandingPage.MobileSelection(FlipkartLandingPage.java:140)
+at LandingPage.LandingPageTest.MobileSelection(LandingPageTest.java:39)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:134)
 at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:597)
 at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
@@ -30,7 +66,7 @@ at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java
 at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.ArrayList.forEach(Unknown Source)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1510)
 at org.testng.TestRunner.privateRun(TestRunner.java:766)
 at org.testng.TestRunner.run(TestRunner.java:587)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
@@ -48,10 +84,14 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MobileSelection -->
+        <test-method is-config="true" signature="Browserclose()[pri:0, instance:LandingPage.LandingPageTest@3fc9504b]" started-at="2021-04-18T17:39:28 IST" name="Browserclose" finished-at="2021-04-18T17:39:29 IST" duration-ms="702" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserclose -->
       </class> <!-- LandingPage.LandingPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

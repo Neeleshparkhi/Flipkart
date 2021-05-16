@@ -6,7 +6,7 @@
   </listeners>
   <test name="LandingPageTest">
     <classes>
-      <class name="Flipkart.LandingPage.LandingPageTest"/>
+      <class name="LandingPage.LandingPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

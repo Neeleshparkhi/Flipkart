@@ -4,25 +4,27 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import Actions.Flipkart_Actions;
-import Configuration.DriverManager;
 import PageObjects.LandingPage;
-import Utility.Screenshot;
-import Utility.WriteExcel;
+import Utility.ScreenShot;
+import Utility.XLUtility;
 
 
 public class FlipkartLandingPage extends Flipkart_Actions implements LandingPage{
 	
 	public static String testName;
 	public static String title;
-	
+	public XLUtility xlutil;
+  
+	String path = ".\\MobileDetails.xlsx";
 	//WriteExcel obj;
+   
 	
 	Logger Log = LogManager.getLogger(FlipkartLandingPage.class.getName());
 
@@ -30,6 +32,7 @@ public class FlipkartLandingPage extends Flipkart_Actions implements LandingPage
 	{
 		super(driver);
 	}
+	
 	
 	public WebElement Search()
 	{
@@ -51,12 +54,21 @@ public class FlipkartLandingPage extends Flipkart_Actions implements LandingPage
 		return driver.findElement(Maxpriceselection);
 	}
 	
-    public void MaxPrice()
+    public void MaxPrice(String price)
     {
     	Select se = new Select(Maxpriceselection());
     	//List<WebElement> element = se.getOptions();
-    	String gettext = driver.findElement(Maxprice).getText();
-    	se.selectByVisibleText(gettext);
+    	//String gettext = driver.findElement(Maxprice).getText();
+    	se.selectByValue(price);    }
+    
+    public List<WebElement> Rams()
+    {
+    	return driver.findElements(Rams);
+    }
+    
+    public WebElement Band()
+    {
+    	return driver.findElement(band);
     }
     
     public WebElement Ramselection()
@@ -69,15 +81,21 @@ public class FlipkartLandingPage extends Flipkart_Actions implements LandingPage
     	return driver.findElement(ProcesserBand);
     }
     
+    public List<WebElement> processerBandName()
+    {
+    	return driver.findElements(processerBandName);
+    }
+    
     public WebElement Snapdragon()
     {
     	return driver.findElement(Snapdragon);
     }
     
-    public void MobileSelection() throws Exception
+    public void MobileSelection(String productname, String price, String ram, String bandname) throws Exception
     {
     	FlipkartLandingPage flp = new FlipkartLandingPage(driver);
 		try {
+			Thread.sleep(3000);
 			flp.popup().click();
 			Log.info("Autosuggestive popup is available.");
 		} catch (Exception e) {
@@ -86,63 +104,93 @@ public class FlipkartLandingPage extends Flipkart_Actions implements LandingPage
 			Log.info("Autosuggestive popup is not available.");
 		}
 		
-		Log.info("Enterin the text" + prop.getProperty("mobile"));
-		flp.Search().sendKeys(prop.getProperty("mobile"));
+		Log.info("Enterin the text" + productname);
+		flp.Search().sendKeys(productname);
 		flp.Search().sendKeys(Keys.ENTER);
-		Log.info(prop.getProperty("mobile")+ " is selected.");
+		Log.info(productname+ " is selected.");
 		waitForElementToClick(Maxprice);
 		String str = driver.findElement(Maxprice).getText();
 		Log.info(str + " is Maximum price is selecting.");
-		MaxPrice();
-		String ram= driver.findElement(RamSelection).getText();
+		MaxPrice(price);
+		String Ram= driver.findElement(RamSelection).getText();
 		waitForElementToClick(RamSelection);
 		Log.info(ram + " is selecting.");
 		Thread.sleep(2000);
-		Click(RamSelection);
+		
+		List<WebElement> RamList = driver.findElements(Rams);
+		//System.out.println(RamList.size());
+		//System.out.println(Rams().size());
+		int ramcount = RamList.size();
+		for(int i=0;i<RamList.size(); i++) {
+			//System.out.println(driver.findElement(Rams).getText());
+			WebElement MobileRamInGB = RamList.get(i);
+			String MobileRam = MobileRamInGB.getText();
+			//System.out.println(MobileRam);
+			if(MobileRam.equalsIgnoreCase(ram)) {
+				//Thread.sleep(2000);
+				Click(RamSelection);
+			}else
+			{
+			   
+			}
+		}
+		
+		Thread.sleep(2000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", ProcesserBand());
+		//js.executeScript("arguments[0].scrollIntoView();", ProcesserBand);
 		waitForElementToClick(ProcesserBand);
 		String pBand = driver.findElement(ProcesserBand).getText();
 		Log.info(pBand + " is Selecting");
-		Click(ProcesserBand);
-		String snapd = driver.findElement(Snapdragon).getText();
+		//Thread.sleep(2000);
+		//Click(ProcesserBand);
+		driver.findElement(ProcesserBand).click();
 		waitForElementToClick(Snapdragon);
+		String snapd = driver.findElement(Snapdragon).getText();
+		System.out.println("Processer Band is :- " +snapd);
 		Log.info(snapd + " Is selecting.");
-		Click(Snapdragon);
-		Screenshot.captureScreen(driver, title, testName);
+		List<WebElement> bandName = driver.findElements(processerBandName);
+		System.out.println(processerBandName().size());
+		int bandcount = bandName.size();
+		for(int j=0; j<bandName.size();j++)
+		{
+			WebElement bandSelection = bandName.get(j);
+			String BandName = bandSelection.getText();
+			System.out.println(BandName);
+			if(BandName.equalsIgnoreCase(bandname))
+			{
+				bandName.get(j).click();
+			}else {
+				
+			}
+		}
 		
-	    List<WebElement> count = Pagecss();
-	    int totalcount =  count.size();
-	    List<WebElement> mcount = mobileNamecount();
-	    List<WebElement> Mname = MobileName();
-	    List<WebElement> Mprice = MobilePrice();
-	    int mtotal = mcount.size();
-	    System.out.println(mtotal);
-	    for(int i=0;i<mtotal;i++)
+		ScreenShot.fullPageScreenshot(driver);
+		
+		XLUtility xlutil = new XLUtility(path);
+		
+	    List<WebElement> count = Totalmobile();
+	    int totalmobilecount =  count.size();
+	    System.out.println("Total count of mobile is :- " + totalmobilecount);
+	    
+	    for(int r=0; r<totalmobilecount; r++ )
 	    {
+	    	String mobileName = MobileName().get(r).getText();
+	    	System.out.println(mobileName);
+	    	String mobilePrice = MobilePrice().get(r).getText();
+	    	System.out.println(mobilePrice);
 	    	
-//	    	for(int j=i; j<Mcount; j++)
-//	    	{
-	    		WriteExcel obj = new WriteExcel();
-	    		
-	    		String mobilename = Mname.get(i).getText();
-		    	String mobileprice = Mprice.get(i).getText();
-		    	obj.writeExcel("MobileDetails", mobilename , i, 0);
-		    	obj.writeExcel("MobileDetails", mobileprice , i, 1);
-//		    	obj = new WriteExcel();
-//		    	obj.writeExcel("MobileDetails", mobilename , i, i);
-//		    	obj.writeExcel("MobileDetails", mobileprice, i, i+1);
-		    	
-		    
-		    	
-		    	System.out.print("Mobile Name is :-" + mobilename);
-		    	System.out.println(" Mobile Price is :-" + mobileprice);
-//	    	}
-	    	
-       }
+	    	xlutil.setCellData("Mobile", r , 0, mobileName);
+	    	xlutil.setCellData("Mobile", r , 1, mobilePrice);
+	    }
+	    
+	    System.out.println("Mobile data is uploaded succesfully.");
+	   
     }
     
-    public List<WebElement> Pagecss()
+    public List<WebElement> Totalmobile()
     {
-    	return driver.findElements(Pagecss);
+    	return driver.findElements(totalMobile);
     }
     
     public List<WebElement> MobileName()
